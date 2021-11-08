@@ -83,6 +83,6 @@
     $car3->setSeat(5,7);
     echo $car3->getModal();
     echo $car3->getEngine();
-    echo $car3->getSeat();
+    echo $car3->getSeat();   
     
 ?>
