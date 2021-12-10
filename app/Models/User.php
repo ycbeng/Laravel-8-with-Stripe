@@ -23,7 +23,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function myCart()){
+    public function myCart(){
         return $this->hasMany('App\myCart');
     }
 
