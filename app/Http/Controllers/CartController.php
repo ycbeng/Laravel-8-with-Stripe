@@ -11,13 +11,19 @@ use App\Models\Product;
 
 class CartController extends Controller
 {
+    
+    public function __construct(){
+        $this->middleware('auth'); 		
+    }
+
     public function add(){
         $r=request();
         $addCart=myCart::Create([
             'productID'=>$r->productID,
-            'quantiry'=>$r->quantity,
+            'quantity'=>$r->quantity,
             'userID'=>Auth::id(),
             'orderID'=>'',
         ]);
+        Return redirect()->route('showProduct');
     }
 }
