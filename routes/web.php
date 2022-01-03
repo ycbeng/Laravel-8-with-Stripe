@@ -49,6 +49,15 @@ Route::get('/deleteCart/{id}',[App\Http\Controllers\CartController::class,'delet
 
 Route::post('/checkout', [App\Http\Controllers\PaymentController::class, 'paymentPost'])->name('payment.post');
 
+Route::get('/myOrder', [App\Http\Controllers\PaymentController::class, 'showOrder'])->name('myOrder');
+
+Route::get('/products',[App\Http\Controllers\ProductController::class, 'viewProduct'] ) ->name('products');
+
+Route::post('/products',[App\Http\Controllers\ProductController::class, 'searchProduct'] ) ->name('search.product');
+
+Route::get('/pdfReport',[App\Http\Controllers\PDFController::class,'pdfReport'])->name('pdfReport');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

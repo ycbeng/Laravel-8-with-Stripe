@@ -10,6 +10,7 @@ use Auth;
 use Session;
 use App\Models\myCart;
 use App\Models\myOrder;
+use Notification;
 
 class PaymentController extends Controller
 {
@@ -43,7 +44,20 @@ class PaymentController extends Controller
             $carts->save();
         }
 
+        $email='cbyang@sc.edu.my'; //receiver email
+        Notification::route('mail',$email)->notify(new \App\Notifications\orderPaid($email));
+
+
         Session::flash('success','Order succeessully!');   
         return back();
+    }
+
+    public function showOrder(){
+        $orders=DB::table('my_orders')
+        ->select('my_orders.id','my_orders.amount','my_orders.created_at')
+        ->where('my_orders.userID','=',Auth::id())
+        ->get();
+
+        return view('myOrder')->with('orders',$orders);
     }
 }
