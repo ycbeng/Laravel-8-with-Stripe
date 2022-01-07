@@ -53,9 +53,7 @@
             </table>
         <br><br>
     </div>
-    <div class="col-sm-2">@foreach($noItem as $c)
-        {{ $c->count_item }}
-        @endforeach
+    <div class="col-sm-2">
     </div>
 </div>
 

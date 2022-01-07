@@ -84,6 +84,8 @@ class ProductController extends Controller
 
         $products=Product::all();
         
+        (new CartController)->cartItem(); // call CartController function
+        
         return view('viewProducts')->with('products',$products);
         
     }
@@ -92,6 +94,16 @@ class ProductController extends Controller
         $r=request();
         $keyword=$r->keyword;
         $products=DB::table('products')->where('name','like','%'.$keyword.'%')->get();
+        return view('viewProducts')->with('products',$products);
+    }
+
+    public function viewPhone(){
+        $products=DB::table('products')->where('CategoryID','=','1')->get();
+        return view('viewProducts')->with('products',$products);
+    }
+
+    public function viewComputer(){
+        $products=DB::table('products')->where('CategoryID','=','2')->orWhere('CategoryID','=','3')->get();
         return view('viewProducts')->with('products',$products);
     }
 
