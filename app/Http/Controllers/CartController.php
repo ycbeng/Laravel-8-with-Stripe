@@ -16,6 +16,8 @@ class CartController extends Controller
         $this->middleware('auth'); 		
     }
 
+    
+
     public function add(){
         $r=request();
         $addCart=myCart::Create([
