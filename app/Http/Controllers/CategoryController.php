@@ -11,7 +11,8 @@ use Auth;
 class CategoryController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth'); 		
+        //$this->middleware('auth');
+        return redirect()->route('home');        		
     }
     
     public function index(){
@@ -28,6 +29,10 @@ class CategoryController extends Controller
     }
 
     public function view(){
+        if(Auth::id()!=1){
+            //Session::flash('success',Auth::id());
+            //return redirect()->route('home');
+        } 
         $viewCategory=Category::all(); //generate SQL select * from categories
         Return view('showCategory')->with('categories',$viewCategory);
     }

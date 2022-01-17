@@ -20,6 +20,7 @@ class ProductController extends Controller
 
     public function viewProduct(){
 
+        
         $products=Product::all();        
         (new CartController)->cartItem(); // call CartController function        
         return view('viewProducts')->with('products',$products);
